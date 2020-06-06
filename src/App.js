@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
         <h1>hi Im a react app</h1>
         <p>this is really working</p>
-        <button>Swtich Name</button>
+        <button onClick={}>Swtich Name</button>
         <Person name={this.state.persons[0].name} age="28" />
         <Person name="Manu" age="29">
           My hobbies: Racing
