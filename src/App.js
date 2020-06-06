@@ -1,33 +1,54 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Person from "./Person";
 
-const App = (props) => {
-  const [personState, setPersonState] = useState({
-    person: [{ name: "Max", age: 28 }],
+class App extends Component {
+  state = {
+    person: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Stephanie", age: 26 },
+    ],
     otherState: "something",
-  });
+  };
 
-  const switchNameHandler = () => {
-    setPersonState({
-      person: [{ name: "Mike", age: "37" }],
+  switchNameHandler = (newName) => {
+    this.setState({
+      person: [
+        { name: newName, age: "37" },
+        { name: "Manu", age: "29" },
+        { name: "Stephanie", age: "27" },
+      ],
     });
   };
 
-  return (
-    <div className="App">
-      <h1>hi Im a react app</h1>
-      <p>this is really working</p>
-      <button onClick={switchNameHandler}>Swtich Name</button>
-      <Person
-        name={personState.person[0].name}
-        age={personState.person[0].age}
-      />
-      <Person name="Manu" age="29">
-        My hobbies: Racing
-      </Person>
-      <Person name="Stephanie" age="26" />
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <h1>hi Im a react app</h1>
+        <p>this is really working</p>
+        {/* <button onClick={this.switchNameHandler.bind(this, "Mike")}> */}
+        <button onClick={() => this.switchNameHandler('Mike')}>
+          Swtich Name
+        </button>
+
+        <Person
+          name={this.state.person[0].name}
+          age={this.state.person[0].age}
+        />
+        <Person
+          name={this.state.person[1].name}
+          age={this.state.person[1].age}
+          click={this.switchNameHandler.bind(this, "Michael")}
+        >
+          My hobbies: Racing
+        </Person>
+        <Person
+          name={this.state.person[2].name}
+          age={this.state.person[2].age}
+        />
+      </div>
+    );
+  }
+}
 
 export default App;
